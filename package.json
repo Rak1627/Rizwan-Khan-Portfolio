@@ -1,0 +1,35 @@
+{
+  "name": "rizwan-khan-portfolio",
+  "version": "1.0.0",
+  "description": "Modern Full Stack Developer Portfolio - Rizwan Khan",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build needed'",
+    "start": "npx serve .",
+    "preview": "npx serve ."
+  },
+  "keywords": [
+    "portfolio",
+    "full-stack-developer",
+    "react",
+    "wordpress",
+    "javascript",
+    "responsive-design",
+    "modern-portfolio",
+    "web-developer"
+  ],
+  "author": "Rizwan Khan <rizwan.khan1666@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rak1627/portfolio"
+  },
+  "homepage": "https://rizwan-khan-portfolio.vercel.app",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
