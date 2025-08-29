@@ -26,7 +26,7 @@ A modern, responsive portfolio website showcasing full-stack development skills 
 - **Skills** - Interactive skill tags with hover effects
 - **Experience** - Timeline layout with company details
 - **Projects** - Show more/less functionality with live links
-- **Contact** - Professional contact form
+- **Contact** - Fully functional contact form with Formspree integration
 
 ## 🛠️ Tech Stack
 
@@ -43,6 +43,7 @@ A modern, responsive portfolio website showcasing full-stack development skills 
 - **Responsive Design** - Mobile-first approach
 - **SEO Optimized** - Clean semantic HTML
 - **Fast Loading** - Optimized assets and code
+- **Contact Form** - Formspree integration for direct email delivery
 
 ## 📱 Responsive Breakpoints
 
@@ -77,11 +78,12 @@ A modern, responsive portfolio website showcasing full-stack development skills 
 ## 📂 Project Structure
 
 ```
-Rizwan Khan Portfolio/
-├── index.html              # Main portfolio file
-├── Mypic.jpg              # Profile picture
+Rizwan-Khan-Portfolio/
+├── public/
+│   ├── index.html          # Main portfolio file
+│   └── Mypic.jpg          # Profile picture
 ├── package.json           # Node.js configuration
-├── vercel.json           # Vercel deployment config
+├── vercel.json           # Vercel deployment config (optional)
 └── README.md             # Project documentation
 ```
 
@@ -99,7 +101,7 @@ Rizwan Khan Portfolio/
 
 3. **Open in browser:**
    ```bash
-   open index.html
+   open public/index.html
    ```
 
 ## 🌐 Deployment
