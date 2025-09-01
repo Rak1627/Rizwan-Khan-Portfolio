@@ -6,7 +6,6 @@
     <title>Rizwan Khan Portfolio - Full Stack Developer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
         :root {
             --primary: #7c3aed;
@@ -1978,9 +1977,6 @@
                             <label for="message">Message</label>
                             <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
                         </div>
-                        <div class="form-group" style="margin-bottom: 2rem;">
-                            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" style="transform: scale(0.9); transform-origin: 0 0;"></div>
-                        </div>
                         <button type="submit" class="btn btn-primary" style="width: 100%;">
                             <i class="fas fa-rocket"></i> Send Message
                         </button>
@@ -2145,13 +2141,6 @@
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Check reCAPTCHA
-            const recaptchaResponse = grecaptcha.getResponse();
-            if (!recaptchaResponse) {
-                alert('Please complete the reCAPTCHA verification.');
-                return;
-            }
-            
             // Add loading state to button
             const btn = this.querySelector('button');
             const originalText = btn.innerHTML;
@@ -2165,7 +2154,6 @@
                 email: formData.get('email'),
                 subject: formData.get('subject'),
                 message: formData.get('message'),
-                recaptcha_token: recaptchaResponse,
                 created_at: new Date().toISOString()
             };
             
@@ -2184,7 +2172,6 @@
                 if (response.ok || response.status === 201) {
                     alert('🚀 Message sent successfully! I\'ll get back to you soon.');
                     this.reset();
-                    grecaptcha.reset(); // Reset reCAPTCHA after successful submission
                 } else {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -2192,7 +2179,6 @@
             .catch(error => {
                 alert('❌ Oops! Something went wrong. Please try again.');
                 console.error('Error:', error);
-                grecaptcha.reset(); // Reset reCAPTCHA on error
             })
             .finally(() => {
                 btn.innerHTML = originalText;
