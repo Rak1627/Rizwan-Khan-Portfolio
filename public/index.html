@@ -6,6 +6,7 @@
     <title>Rizwan Khan Portfolio - Full Stack Developer</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         :root {
             --primary: #7c3aed;
@@ -2137,7 +2138,15 @@
         const SUPABASE_URL = 'https://doyvntdjxelqmnmaoyuk.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRveXZudGRqeGVscW1ubWFveXVrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY3NDk2NDIsImV4cCI6MjA3MjMyNTY0Mn0.N76K76QiQwGwgTDkRxuyM2zT-FuXnmCEQteK09CEaFA';
         
-        // Form submission with Supabase
+        // EmailJS configuration
+        const EMAILJS_PUBLIC_KEY = 'YOUR_EMAILJS_PUBLIC_KEY';
+        const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
+        const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+        
+        // Initialize EmailJS
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+        
+        // Form submission with Supabase and EmailJS
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -2157,23 +2166,37 @@
                 created_at: new Date().toISOString()
             };
             
-            // Submit to Supabase
-            fetch(`${SUPABASE_URL}/rest/v1/contacts`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Prefer': 'return=minimal'
-                },
-                body: JSON.stringify(contactData)
-            })
-            .then(response => {
-                if (response.ok || response.status === 201) {
+            // Prepare EmailJS template parameters
+            const emailParams = {
+                from_name: contactData.name,
+                from_email: contactData.email,
+                subject: contactData.subject,
+                message: contactData.message,
+                to_email: 'rizwan.khan1666@gmail.com'
+            };
+            
+            // Promise.all to handle both Supabase and EmailJS simultaneously
+            Promise.all([
+                // Submit to Supabase
+                fetch(`${SUPABASE_URL}/rest/v1/contacts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Prefer': 'return=minimal'
+                    },
+                    body: JSON.stringify(contactData)
+                }),
+                // Send email via EmailJS
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, emailParams)
+            ])
+            .then(([supabaseResponse, emailResponse]) => {
+                if ((supabaseResponse.ok || supabaseResponse.status === 201) && emailResponse.status === 200) {
                     alert('🚀 Message sent successfully! I\'ll get back to you soon.');
                     this.reset();
                 } else {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    throw new Error('Failed to send message or email');
                 }
             })
             .catch(error => {
