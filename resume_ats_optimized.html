@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rizwan Khan - Full Stack Developer Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #333;
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .resume-container {
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            min-height: 297mm;
+        }
+
+        .header {
+            display: flex;
+            align-items: flex-start;
+            background: #f8f9fa;
+            padding: 30px;
+            border-bottom: 3px solid #3e6da0;
+        }
+
+        .profile-image {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #3e6da0;
+            margin-right: 30px;
+            flex-shrink: 0;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        .name {
+            font-size: 28pt;
+            font-weight: bold;
+            color: #3e6da0;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .title {
+            font-size: 14pt;
+            color: #666;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 11pt;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: #555;
+        }
+
+        .contact-item::before {
+            content: "📧";
+            margin-right: 8px;
+            width: 16px;
+        }
+
+        .contact-item:nth-child(1)::before { content: "📍"; }
+        .contact-item:nth-child(2)::before { content: "📞"; }
+        .contact-item:nth-child(3)::before { content: "📧"; }
+        .contact-item:nth-child(4)::before { content: "🌐"; }
+        .contact-item:nth-child(5)::before { content: "💼"; }
+        .contact-item:nth-child(6)::before { content: "🔗"; }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .left-column {
+            flex: 1;
+        }
+
+        .right-column {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #3e6da0;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #3e6da0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .job-entry {
+            margin-bottom: 20px;
+        }
+
+        .job-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .company-date {
+            font-size: 10pt;
+            color: #666;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .job-description ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .job-description li {
+            margin-bottom: 4px;
+            padding-left: 15px;
+            position: relative;
+            font-size: 11pt;
+            line-height: 1.4;
+        }
+
+        .job-description li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3e6da0;
+            font-weight: bold;
+        }
+
+        .skills-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #3e6da0;
+        }
+
+        .skill-category h4 {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #3e6da0;
+            margin-bottom: 8px;
+        }
+
+        .skill-list {
+            font-size: 10pt;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .education-item, .cert-item {
+            margin-bottom: 12px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+            border-left: 3px solid #3e6da0;
+        }
+
+        .education-item h4, .cert-item h4 {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .education-item p, .cert-item p {
+            font-size: 10pt;
+            color: #666;
+            margin: 0;
+        }
+
+        .summary-text {
+            text-align: justify;
+            line-height: 1.5;
+            font-size: 11pt;
+            color: #555;
+        }
+
+        .competencies-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .competencies-list li {
+            margin-bottom: 6px;
+            padding-left: 15px;
+            position: relative;
+            font-size: 11pt;
+            line-height: 1.4;
+        }
+
+        .competencies-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        a {
+            color: #3e6da0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Print styles */
+        @media print {
+            @page {
+                margin: 0.5in;
+                size: A4;
+            }
+            
+            body {
+                padding: 0;
+                background: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .resume-container {
+                box-shadow: none;
+                min-height: auto;
+                page-break-inside: avoid;
+            }
+            .main-content {
+                grid-template-columns: 1fr 300px;
+                gap: 20px;
+                padding: 20px;
+            }
+            .header {
+                padding: 20px;
+                page-break-inside: avoid;
+            }
+            .section {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            
+            /* Hide any unwanted elements during print */
+            * {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <!-- Header with Photo -->
+        <div class="header">
+            <img src="mypic.jpg" alt="Rizwan Khan" class="profile-image">
+            <div class="header-content">
+                <div class="name">RIZWAN KHAN</div>
+                <div class="title">Front End Developer | WordPress Expert</div>
+                <div class="contact-info">
+                    <div class="contact-item">Lahore, Pakistan</div>
+                    <div class="contact-item"><a href="tel:+923003676191">+92 300 3676191</a></div>
+                    <div class="contact-item"><a href="mailto:rizwan.khan1666@gmail.com">rizwan.khan1666@gmail.com</a></div>
+                    <div class="contact-item"><a href="https://rizwan-khan-portfolio.vercel.app/" target="_blank">rizwan-khan-portfolio.vercel.app</a></div>
+                    <div class="contact-item"><a href="https://linkedin.com/in/rizwan-khan1627" target="_blank">linkedin.com/in/rizwan-khan1627</a></div>
+                    <div class="contact-item"><a href="https://github.com/Rak1627" target="_blank">github.com/Rak1627</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Left Column - Main Content -->
+            <div class="left-column">
+                <div class="section">
+                    <div class="section-title">Professional Summary</div>
+                    <p class="summary-text">Frontend Developer and WordPress Expert with 4+ years of experience in creating dynamic, responsive web applications and custom WordPress solutions. Specialized in modern frontend technologies, custom theme development, and API integration, with proven expertise in responsive design, performance optimization, and cross-device compatibility. Adept at collaborating with international teams and delivering tailored solutions for healthcare, e-commerce, and real-time applications.</p>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Core Competencies</div>
+                    <ul class="competencies-list">
+                        <li>Frontend Development (React.js, Node.js, PHP, MySQL)</li>
+                        <li>WordPress Development (Custom Themes, Plugins, ACF, Elementor, WP Bakery, WooCommerce)</li>
+                        <li>Database Management (Supabase, MySQL, MongoDB)</li>
+                        <li>Web Performance Optimization and Speed Enhancement</li>
+                        <li>Responsive Web Design (Bootstrap, Tailwind CSS)</li>
+                        <li>Client Communication and Remote Collaboration</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Professional Experience</div>
+                    
+                    <div class="job-entry">
+                        <div class="job-title">WordPress Developer</div>
+                        <div class="company-date">MavenUp Creatives (Pvt) Ltd, Lahore | January 2023 – February 2024</div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Built custom WordPress themes with ACF integration and Font Awesome icons</li>
+                                <li>Integrated React.js components with WordPress REST API for dynamic content</li>
+                                <li>Implemented Supabase for real-time data management in WordPress projects</li>
+                                <li>Developed responsive interfaces with Bootstrap 5 and custom CSS</li>
+                                <li>Collaborated with a US-based healthcare agency on doctor consultation platforms</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="job-entry">
+                        <div class="job-title">Front-End Developer</div>
+                        <div class="company-date">Trimax Inspection & Training LLC, Abu Dhabi | February 2021 – February 2022</div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Built single-page applications (SPAs) using React.js</li>
+                                <li>Integrated REST APIs for dynamic content and authentication</li>
+                                <li>Optimized website speed and ensured cross-browser compatibility</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="job-entry">
+                        <div class="job-title">Front-End Developer</div>
+                        <div class="company-date">HUB SOL Technologies Co LLC, Lahore | March 2020 – December 2020</div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Designed interactive user interfaces and ensured cross-device compatibility</li>
+                                <li>Developed API-driven interfaces for dynamic content management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Sidebar -->
+            <div class="right-column">
+                <div class="section">
+                    <div class="section-title">Technical Skills</div>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h4>Frontend Technologies</h4>
+                            <div class="skill-list">React.js, JavaScript (ES6+), HTML5, CSS3, SCSS, Bootstrap 5, Tailwind CSS, jQuery</div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Backend Technologies</h4>
+                            <div class="skill-list">Node.js, PHP, WordPress, Custom Post Types, ACF Integration, Elementor, WP Bakery</div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>Databases & Cloud</h4>
+                            <div class="skill-list">Supabase, MySQL, PostgreSQL, Firebase, MongoDB</div>
+                        </div>
+                        <div class="skill-category">
+                            <h4>DevOps & Tools</h4>
+                            <div class="skill-list">Git, GitHub, cPanel, Netlify, Vercel, Google Analytics, Google Search Console</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Education</div>
+                    <div class="education-item">
+                        <h4>Bachelor of Science in Computer Science</h4>
+                        <p>Karachi, Pakistan</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Intermediate in Computer Science</h4>
+                        <p>Karachi, Pakistan</p>
+                    </div>
+                    <div class="education-item">
+                        <h4>Matriculation</h4>
+                        <p>Lahore, Pakistan</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Certifications</div>
+                    <div class="cert-item">
+                        <h4>Advanced React.js Development</h4>
+                    </div>
+                    <div class="cert-item">
+                        <h4>WordPress Theme & Plugin Development</h4>
+                    </div>
+                    <div class="cert-item">
+                        <h4>RESTful API Design & Implementation</h4>
+                    </div>
+                    <div class="cert-item">
+                        <h4>Responsive Web Design Certification</h4>
+                    </div>
+                    <div class="cert-item">
+                        <h4>Database Design & Optimization</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
